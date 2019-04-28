@@ -1,5 +1,5 @@
 # Plumsail
-Тестовое задание для компании Plumsail
+Тестовое задание для компании Plumsail  
 A programming task for candidates for developer JavaScript, C#.
 1. Create an arbitrary form with CSS and JavaScript framework of your choice. Say, a contact or order form with at least five fields of different types: text, drop-down, date, radio, check box.
 2. You can use frameworks like vue.js, angular, react, knockout. Don't use jQuery as main JavaScript framework. It can be used as a helper only. You can use TypeScript or Babel if you want.
