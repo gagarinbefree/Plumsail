@@ -1,6 +1,6 @@
-﻿import { connect } from 'react-redux';
-import App, { IOrderFormPayload, IOrderFormProps } from '../components/OrderForm';
-import { sendOrderFormAsync } from '../actions/OrderForm';
+﻿import { connect } from "react-redux";
+import OrderForm, { IOrderFormPayload, IOrderFormProps } from "../components/OrderForm";
+import { sendOrderFormAsync } from "../actions/OrderForm";
 
 const mapStateToProps = (state: any): IOrderFormPayload => {
     return {
@@ -13,5 +13,5 @@ const mapDispatchToProps = (dispatch: any): IOrderFormProps => {
         sendOrderFormAsync: async (): Promise<void> => dispatch(sendOrderFormAsync()),
     }
 }
-
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+                                                         
+export default connect(mapStateToProps, mapDispatchToProps)(OrderForm);

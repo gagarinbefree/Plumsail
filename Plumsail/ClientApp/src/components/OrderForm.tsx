@@ -10,7 +10,7 @@ export interface IOrderFormPayload {
 }
 
 export interface IOrderFormProps {
-    sendFormAsync(): Promise<void>;    
+    sendOrderFormAsync(): Promise<void>;    
 }
 
 
@@ -20,7 +20,7 @@ export default class OrderForm extends React.Component<IOrderFormPayload & IOrde
     }
 
     public render(): JSX.Element {
-        return <div id="orderForm" className="modal" tabIndex={-1} role="dialog">
+        return (<div id="orderForm" className="modal" tabIndex={-1} role="dialog">
             <div className="modal-dialog" role="document">
                 <div className="modal-content">
                     <div className="modal-header">
@@ -38,6 +38,6 @@ export default class OrderForm extends React.Component<IOrderFormPayload & IOrde
                     </div>
                 </div>
             </div>
-        </div>
+        </div>);
     }
 }

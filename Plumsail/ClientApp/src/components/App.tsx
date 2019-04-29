@@ -1,7 +1,7 @@
-import * as React from 'react';
-import 'bootstrap/dist/js/bootstrap';
-import 'bootstrap/dist/css/bootstrap.css';
-import OrderForm from '../reducers/OrderForm';
+import * as React from "react";
+import "bootstrap/dist/js/bootstrap";
+import "bootstrap/dist/css/bootstrap.css";
+import OrderForm from "../reducers/OrderForm";
 
 export interface IAppState {
     type: string;
@@ -23,7 +23,7 @@ export default class App extends React.Component<IAppPayload & IAppProps> {
 
     public render(): JSX.Element {
         return (
-            <div className="App">
+            <div>
                 <div className="container-fluid">
                     <div className="row">
                         <div className="ml-3 mt-3">
