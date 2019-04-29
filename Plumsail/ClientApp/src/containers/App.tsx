@@ -14,4 +14,4 @@ const mapDispatchToProps = (dispatch: any): IAppProps => {
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default connect<IAppPayload, IAppProps>(mapStateToProps, mapDispatchToProps)(App);
