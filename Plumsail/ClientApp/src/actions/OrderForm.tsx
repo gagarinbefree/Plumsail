@@ -12,7 +12,6 @@ export const sendOrderFormAction = (error: string): ISendOrderFormAction => ({
 
 export const sendOrderFormAsync = () => (
     async (dispatch: Dispatch, getState: Function): Promise<void> => {
-        const state = getState();
         try {
             const res: any = await fetch("", {
                 method: "post",

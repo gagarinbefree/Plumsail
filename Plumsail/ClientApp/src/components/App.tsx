@@ -1,7 +1,7 @@
 import * as React from "react";
 import "bootstrap/dist/js/bootstrap";
 import "bootstrap/dist/css/bootstrap.css";
-import OrderForm from "../reducers/OrderForm";
+import OrderForm from "../containers/OrderForm";
 
 export interface IAppState {
     type: string;
