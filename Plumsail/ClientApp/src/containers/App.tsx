@@ -1,9 +1,9 @@
-﻿import { connect } from 'react-redux';
-import App, { IAppPayload, IAppProps } from '../components/App';
-import { onShowOrderForm } from '../actions/App';
+﻿import { connect } from "react-redux";
+import App, { IAppPayload, IAppProps } from "../components/App";
+import { onShowOrderForm } from "../actions/App";
 
 const mapStateToProps = (state: any): IAppPayload => {
-    return {
+    return {        
         showOrderForm: state.AppReducer.payload.showOrderForm
     }
 }
@@ -14,4 +14,4 @@ const mapDispatchToProps = (dispatch: any): IAppProps => {
     }
 }
 
-export default connect<IAppPayload, IAppProps>(mapStateToProps, mapDispatchToProps)(App);
+export default connect(mapStateToProps, mapDispatchToProps)((App) as any);

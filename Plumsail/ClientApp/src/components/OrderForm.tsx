@@ -1,4 +1,4 @@
-﻿import * as React from 'react';
+﻿    import * as React from 'react';
 
 export interface IOrderFormState {
     type: string;
@@ -24,13 +24,43 @@ export default class OrderForm extends React.Component<IOrderFormPayload & IOrde
             <div className="modal-dialog" role="document">
                 <div className="modal-content">
                     <div className="modal-header">
-                        <h5 className="modal-title">Modal title</h5>
+                        <h5 className="modal-title">Create new order</h5>
                         <button type="button" className="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
                     <div className="modal-body">
-                        <p>Modal body text goes here.</p>
+                        <form>
+                            <div className="form-group">
+                                <label htmlFor="userName">Your name</label>
+                                <input type="text" className="form-control" id="userName" aria-describedby="userName" placeholder="Enter your name" />
+                            </div>
+                            <div className="form-group">
+                                <label className="mr-sm-2" htmlFor="paymentMethod">Payment method</label>
+                                <select className="custom-select mr-sm-2" id="paymentMethod">
+                                    <option selected={true}>Choose payment method</option>
+                                    <option value="1">Credit Cards</option>
+                                    <option value="2">Mobile Payments</option>
+                                    <option value="3">Bank Transfers</option>
+                                    <option value="4">Cash</option>
+                                </select>
+                            </div>
+
+                            <div className="form-group">
+                                <div className="form-check">
+                                    <input className="form-check-input" type="checkbox" value="" id="defaultCheck1" />
+                                    <label className="form-check-label" htmlFor="defaultCheck1">
+                                        Default checkbox
+                                    </label>
+                                </div>
+                                <div className="form-check">
+                                    <input className="form-check-input" type="checkbox" value="" id="defaultCheck2" />
+                                    <label className="form-check-label" htmlFor="defaultCheck2">
+                                        Disabled checkbox
+                                    </label>
+                                </div>
+                            </div>
+                        </form>
                     </div>
                     <div className="modal-footer">
                         <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>

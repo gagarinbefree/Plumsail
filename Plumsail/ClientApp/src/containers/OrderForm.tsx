@@ -14,4 +14,4 @@ const mapDispatchToProps = (dispatch: any): IOrderFormProps => {
     }
 }
                                                          
-export default connect(mapStateToProps, mapDispatchToProps)(OrderForm);
+export default connect(mapStateToProps, mapDispatchToProps)((OrderForm) as any);

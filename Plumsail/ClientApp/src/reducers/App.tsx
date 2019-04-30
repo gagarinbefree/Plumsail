@@ -1,9 +1,7 @@
 ﻿import { IAppState } from "../components/App";
-import { Action } from "redux";
-import produce from "immer";
+import produce, { Draft } from "immer";
 import { IShowOrderFormAction } from "../actions/App";
-import App = require("../components/App");
-import IAppPayload = App.IAppPayload;
+import { Reducer, Action } from "redux"
 
 const initalState: IAppState = {
     type: "",
@@ -12,13 +10,16 @@ const initalState: IAppState = {
     }
 }
 
-const AppReducer = (state: IAppState = initalState, action: any) => produce(state, draft => {
-    if (action.type === "APP_SHOW_CREATE_ORDER_FORM") {        
-        draft.payload.showOrderForm = action.showOrderForm;
+const AppReducer: Reducer<IAppState, Action> = (state: IAppState = initalState, action: Action) => {
+    return produce<IAppState>(state, (draft: Draft<IAppState>): void => {
+        if (action.type === "APP_SHOW_CREATE_ORDER_FORM") {
+            const act = action as IShowOrderFormAction;
+            draft.payload.showOrderForm = act.showOrderForm;
 
-        console.log(action.showOrderForm.toString());
-    }
-});
+            console.log(act.showOrderForm.toString());
+        }
+    });
+};
 
 export default AppReducer;
 

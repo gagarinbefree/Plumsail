@@ -7,11 +7,11 @@ export interface ISendOrderFormAction extends Action<string> {
 
 export const sendOrderFormAction = (error: string): ISendOrderFormAction => ({
     type: "ORDER_FORM_SEND",
-    error: error
+    error
 });
 
 export const sendOrderFormAsync = () => (
-    async (dispatch: Dispatch, getState: Function): Promise<void> => {
+    async (dispatch: Dispatch, getState: () => void): Promise<void> => {
         try {
             const res: any = await fetch("", {
                 method: "post",

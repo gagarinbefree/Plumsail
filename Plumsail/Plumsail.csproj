@@ -33,6 +33,13 @@
     <None Remove="ClientApp\src\reducers\App.tsx" />
     <None Remove="ClientApp\src\reducers\index.tsx" />
     <None Remove="ClientApp\src\reducers\OrderForm.tsx" />
+    <None Remove="ClientApp\tsconfig.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="ClientApp\tsconfig.json">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
   </ItemGroup>
 
   <ItemGroup>
