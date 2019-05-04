@@ -6,7 +6,8 @@ import produce, { Draft } from "immer";
 const initalState: IOrderFormState = {
     type: "",
     payload: {
-        showOrderForm: false
+        showOrderForm: false,
+        bithday: new Date()
     }
 }
 

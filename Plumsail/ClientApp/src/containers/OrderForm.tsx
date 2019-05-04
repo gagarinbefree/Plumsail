@@ -4,7 +4,8 @@ import { sendOrderFormAsync } from "../actions/OrderForm";
 
 const mapStateToProps = (state: any): IOrderFormPayload => {
     return {
-        showOrderForm: state.AppReducer.payload.showCreateOrderForm
+        showOrderForm: state.AppReducer.payload.showCreateOrderForm,
+        bithday: new Date()
     }
 }
 

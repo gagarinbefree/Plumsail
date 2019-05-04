@@ -1,4 +1,7 @@
-﻿    import * as React from 'react';
+﻿import * as React from "react"
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
+
 
 export interface IOrderFormState {
     type: string;
@@ -7,12 +10,12 @@ export interface IOrderFormState {
 
 export interface IOrderFormPayload {
     showOrderForm: boolean;
+    bithday: Date;
 }
 
 export interface IOrderFormProps {
     sendOrderFormAsync(): Promise<void>;    
 }
-
 
 export default class OrderForm extends React.Component<IOrderFormPayload & IOrderFormProps> {
     constructor(props: IOrderFormPayload & IOrderFormProps) {
@@ -35,6 +38,12 @@ export default class OrderForm extends React.Component<IOrderFormPayload & IOrde
                                 <label htmlFor="userName">Your name</label>
                                 <input type="text" className="form-control" id="userName" aria-describedby="userName" placeholder="Enter your name" />
                             </div>
+
+                            <div className="form-group">
+                                <label htmlFor="example-datepicker">Your birthday</label>
+                                <div><DatePicker className="form-control" selected={this.props.bithday} onChange={this.xxx} /></div>
+                            </div>
+
                             <div className="form-group">
                                 <label className="mr-sm-2" htmlFor="paymentMethod">Payment method</label>
                                 <select className="custom-select mr-sm-2" id="paymentMethod">
@@ -45,21 +54,32 @@ export default class OrderForm extends React.Component<IOrderFormPayload & IOrde
                                     <option value="4">Cash</option>
                                 </select>
                             </div>
+                            
+                            <div className="form-group">
+                                <div className="form-check">
+                                    <input className="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1"/>
+                                    <label className="form-check-label" htmlFor="inlineRadio1">
+                                        The information should be submitted in electronic form
+                                    </label>
+                                </div>
+                                <div className="form-check">
+                                    <input className="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2"/>
+                                    <label className="form-check-label" htmlFor="inlineRadio2">
+                                        We can also send out an invoice for group reservations 
+                                     </label>
+                                </div>
+                            </div>
 
                             <div className="form-group">
                                 <div className="form-check">
                                     <input className="form-check-input" type="checkbox" value="" id="defaultCheck1" />
                                     <label className="form-check-label" htmlFor="defaultCheck1">
-                                        Default checkbox
+                                        I accept the Terms
                                     </label>
-                                </div>
-                                <div className="form-check">
-                                    <input className="form-check-input" type="checkbox" value="" id="defaultCheck2" />
-                                    <label className="form-check-label" htmlFor="defaultCheck2">
-                                        Disabled checkbox
-                                    </label>
-                                </div>
+                                </div>                                
                             </div>
+
+
                         </form>
                     </div>
                     <div className="modal-footer">
@@ -70,4 +90,9 @@ export default class OrderForm extends React.Component<IOrderFormPayload & IOrde
             </div>
         </div>);
     }
+
+    private xxx(): void {
+        // empty
+    }
+
 }
