@@ -11,12 +11,11 @@ const ImputText: React.SFC<IInputElement> = (props: IInputElement) => {
             aria-describedby={props.id}
             placeholder={props.placeholder}
             required={props.required}       
-            value=""
             onChange={(event: any) => props.handleChange(event.target.value)}
         />
-        <div className="invalid-feedback">
-            Please provide a valid city.
-        </div>
+        {props.invalidFeedback && <div className="invalid-feedback">
+            {props.invalidFeedback}
+         </div>}
     </React.Fragment>;
 }
 

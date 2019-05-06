@@ -36,10 +36,10 @@ export default class OrderForm extends React.Component<IOrderFormPayload & IOrde
                         </button>
                     </div>
                     <div className="modal-body">
-                        <form onSubmit={this.handleSubmit}>
+                        <form onSubmit={this.handleSubmit} noValidate={true}>
                             <div className="form-group">
                                 <InputText handleChange={(value) => this.props.addChange("userName", value)}
-                                    id="userName" title="User name *" placeholder="Enter your name" required={true} />
+                                    id="userName" title="User name *" placeholder="Enter your name" required={true} invalidFeedback="Please input a user name."/>
                             </div>
 
                             <div className="form-group">
@@ -69,12 +69,13 @@ export default class OrderForm extends React.Component<IOrderFormPayload & IOrde
                                     id="accept" title="I accept the Terms"
                                 />
                             </div>
+                            <div className="modal-footer">
+                                <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <button type="submit" className="btn btn-primary">Save changes</button>
+                            </div>
                         </form>
                     </div>
-                    <div className="modal-footer">
-                        <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="button" className="btn btn-primary">Save changes</button>
-                    </div>
+                    
                 </div>
             </div>
         </div>);
