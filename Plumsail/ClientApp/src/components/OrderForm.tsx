@@ -1,20 +1,22 @@
 ﻿import * as React from "react"
-import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-
+import InputText from "./InputText";
+import InputDate from "./InputDate";
+import InputOption from "./InputOption";
+import InputCheckBox from "./InputCheckBox";
+import InputRadio from "./InputRadio";
 
 export interface IOrderFormState {
     type: string;
-    payload: IOrderFormPayload;
+    payload: IOrderFormPayload;    
 }
 
-export interface IOrderFormPayload {
-    showOrderForm: boolean;
-    bithday: Date;
+export interface IOrderFormPayload  {
+    values: Map<string, string>;
 }
 
 export interface IOrderFormProps {
-    sendOrderFormAsync(): Promise<void>;    
+    addChange(fieldName: string, filedValue: string): void;
 }
 
 export default class OrderForm extends React.Component<IOrderFormPayload & IOrderFormProps> {
@@ -23,6 +25,7 @@ export default class OrderForm extends React.Component<IOrderFormPayload & IOrde
     }
 
     public render(): JSX.Element {
+        const paymentMethods: string[] = ["Credit Cards", "Bank Transfers", "Cash"];
         return (<div id="orderForm" className="modal" tabIndex={-1} role="dialog">
             <div className="modal-dialog" role="document">
                 <div className="modal-content">
@@ -33,53 +36,39 @@ export default class OrderForm extends React.Component<IOrderFormPayload & IOrde
                         </button>
                     </div>
                     <div className="modal-body">
-                        <form>
+                        <form onSubmit={this.handleSubmit}>
                             <div className="form-group">
-                                <label htmlFor="userName">Your name</label>
-                                <input type="text" className="form-control" id="userName" aria-describedby="userName" placeholder="Enter your name" />
+                                <InputText handleChange={(value) => this.props.addChange("userName", value)}
+                                    id="userName" title="User name *" placeholder="Enter your name" required={true} />
                             </div>
 
                             <div className="form-group">
-                                <label htmlFor="example-datepicker">Your birthday</label>
-                                <div><DatePicker className="form-control" selected={this.props.bithday} onChange={this.xxx} /></div>
+                                <InputDate handleChange={(value) => this.props.addChange("birthday", value)}
+                                    id="birthday" title="Birthday" placeholder="Enter your birthday"
+                                />
                             </div>
 
                             <div className="form-group">
-                                <label className="mr-sm-2" htmlFor="paymentMethod">Payment method</label>
-                                <select className="custom-select mr-sm-2" id="paymentMethod">
-                                    <option selected={true}>Choose payment method</option>
-                                    <option value="1">Credit Cards</option>
-                                    <option value="2">Mobile Payments</option>
-                                    <option value="3">Bank Transfers</option>
-                                    <option value="4">Cash</option>
-                                </select>
-                            </div>
-                            
-                            <div className="form-group">
-                                <div className="form-check">
-                                    <input className="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1"/>
-                                    <label className="form-check-label" htmlFor="inlineRadio1">
-                                        The information should be submitted in electronic form
-                                    </label>
-                                </div>
-                                <div className="form-check">
-                                    <input className="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2"/>
-                                    <label className="form-check-label" htmlFor="inlineRadio2">
-                                        We can also send out an invoice for group reservations 
-                                     </label>
-                                </div>
+                                <InputOption handleChange={(value) => this.props.addChange("paymentMethod", value)}
+                                    id="inputOption" title="Payment method" placeholder="Choose payment method"
+                                    values={paymentMethods}
+                                />
                             </div>
 
                             <div className="form-group">
-                                <div className="form-check">
-                                    <input className="form-check-input" type="checkbox" value="" id="defaultCheck1" />
-                                    <label className="form-check-label" htmlFor="defaultCheck1">
-                                        I accept the Terms
-                                    </label>
-                                </div>                                
+                                <InputRadio handleChange={(value) => this.props.addChange("electronic", value)}
+                                    id="electronic" title="The information should be submitted in electronic form"
+                                />
+                                <InputRadio handleChange={(value) => this.props.addChange("electronic", value)}
+                                    id="invoice" title="We can also send out an invoice for group reservations"
+                                />
                             </div>
 
-
+                            <div className="form-group">
+                                <InputCheckBox handleChange={(value) => this.props.addChange("accept", value)}
+                                    id="accept" title="I accept the Terms"
+                                />
+                            </div>
                         </form>
                     </div>
                     <div className="modal-footer">
@@ -91,8 +80,8 @@ export default class OrderForm extends React.Component<IOrderFormPayload & IOrde
         </div>);
     }
 
-    private xxx(): void {
-        // empty
+    private handleSubmit = (e: any): void => {
+        e.preventDefault();
+        e.target.className += " was-validated";
     }
-
 }

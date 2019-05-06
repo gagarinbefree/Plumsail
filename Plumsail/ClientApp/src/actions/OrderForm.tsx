@@ -1,33 +1,13 @@
-﻿import { Action, Dispatch } from "redux";
+﻿import { Action } from "redux";
 
-export interface ISendOrderFormAction extends Action<string> {
+export interface IAddChangeAction extends Action<string> {
     type: string;
-    error: string;
+    fieldName;
+    fieldValue;
 }
 
-export const sendOrderFormAction = (error: string): ISendOrderFormAction => ({
-    type: "ORDER_FORM_SEND",
-    error
+export const addChange = (fieldName: string, fieldValue: string): IAddChangeAction => ({
+    type: "ORDER_FORM_ADD_CHANGE",
+    fieldName,
+    fieldValue
 });
-
-export const sendOrderFormAsync = () => (
-    async (dispatch: Dispatch, getState: () => void): Promise<void> => {
-        try {
-            const res: any = await fetch("", {
-                method: "post",
-                headers: {
-                    "Accept": "application/json",
-                    "Content-Type": "application/json"
-                },
-                body: ""
-            });
-
-            await res.json();
-
-            dispatch((sendOrderFormAction("")) as any);
-        }        
-        catch (e) {
-            dispatch((sendOrderFormAction(e)) as any);
-        }
-    }
-)
