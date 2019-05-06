@@ -1,4 +1,5 @@
 ﻿import { IInputElement } from "./InputElement";
+import InvalidFeedBack from "./InvalidFeedBack";
 import * as React from "react";
 
 const InputPayment: React.SFC<IInputElement> = (props: IInputElement) => {
@@ -10,6 +11,7 @@ const InputPayment: React.SFC<IInputElement> = (props: IInputElement) => {
                 })
             }
         </select>
+        <InvalidFeedBack text={props.invalidFeedBack} />
     </React.Fragment>;
 }
 

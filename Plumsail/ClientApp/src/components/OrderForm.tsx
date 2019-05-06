@@ -25,7 +25,7 @@ export default class OrderForm extends React.Component<IOrderFormPayload & IOrde
     }
 
     public render(): JSX.Element {
-        const paymentMethods: string[] = ["Credit Cards", "Bank Transfers", "Cash"];
+        // const paymentMethods: string[] = ["Credit Cards", "Bank Transfers", "Cash"];
         return (<div id="orderForm" className="modal" tabIndex={-1} role="dialog">
             <div className="modal-dialog" role="document">
                 <div className="modal-content">
@@ -37,21 +37,23 @@ export default class OrderForm extends React.Component<IOrderFormPayload & IOrde
                     </div>
                     <div className="modal-body">
                         <form onSubmit={this.handleSubmit} noValidate={true}>
-                            <div className="form-group">
+
+                            <div className="row">
                                 <InputText handleChange={(value) => this.props.addChange("userName", value)}
-                                    id="userName" title="User name *" placeholder="Enter your name" required={true} invalidFeedback="Please input a user name."/>
+                                    id="userName" title="User name*" placeholder="Enter your name" required={true} invalidFeedBack="Please input a user name"
+                                />
                             </div>
 
-                            <div className="form-group">
+                            <div className="row">
                                 <InputDate handleChange={(value) => this.props.addChange("birthday", value)}
-                                    id="birthday" title="Birthday" placeholder="Enter your birthday"
+                                    id="birthday" title="Birthday*" placeholder="Enter your birthday" required={true} invalidFeedBack="Please input your birthday"
                                 />
                             </div>
 
                             <div className="form-group">
                                 <InputOption handleChange={(value) => this.props.addChange("paymentMethod", value)}
-                                    id="inputOption" title="Payment method" placeholder="Choose payment method"
-                                    values={paymentMethods}
+                                    id="inputOption" title="Payment method" placeholder="Select payment method" required={true} invalidFeedBack="Please select payment method"
+                                    values={["Credit Cards", "Bank Transfers", "Cash"]}
                                 />
                             </div>
 
@@ -69,10 +71,12 @@ export default class OrderForm extends React.Component<IOrderFormPayload & IOrde
                                     id="accept" title="I accept the Terms"
                                 />
                             </div>
+
                             <div className="modal-footer">
                                 <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
                                 <button type="submit" className="btn btn-primary">Save changes</button>
                             </div>
+
                         </form>
                     </div>
                     
@@ -83,6 +87,6 @@ export default class OrderForm extends React.Component<IOrderFormPayload & IOrde
 
     private handleSubmit = (e: any): void => {
         e.preventDefault();
-        e.target.className += " was-validated";
+        e.target.className = "was-validated";
     }
 }
