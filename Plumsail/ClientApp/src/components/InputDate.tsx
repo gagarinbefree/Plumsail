@@ -12,8 +12,8 @@ const InputDate: React.SFC<IInputElement> = (props: IInputElement) => {
                 className="form-control"
                 id={props.id}
                 placeholderText={props.placeholder}
-                required={props.required}                
-                onChange={(event: any) => props.handleChange(event.target.value)}
+                required={props.required}     
+                onChange={(date: any) => props.handleChange(date.toGMTString())}
             />            
         </div>        
         <InvalidFeedBack text={props.invalidFeedBack} />        

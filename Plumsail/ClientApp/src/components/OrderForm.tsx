@@ -45,7 +45,7 @@ export default class OrderForm extends React.Component<IOrderFormPayload & IOrde
 
                             <div className="form-group">
                                 <InputDate handleChange={(value) => this.props.addChange("birthday", value)}
-                                    id="birthday" title="Birthday" placeholder="Enter your birthday" 
+                                    id="birthday" title="Birthday" placeholder="Enter your birthday" required={true} invalidFeedBack="Please select your birthday"
                                 />
                             </div>
 
