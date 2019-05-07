@@ -4,7 +4,7 @@
     name?: string;
     placeholder?: string;
     required?: boolean;
-    value?: string;
+    value?: any;
     values?: string[];
     invalidFeedBack?: string;
     handleChange(e: any): void;    

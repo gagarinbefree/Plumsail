@@ -12,6 +12,7 @@ export interface IOrderFormState {
 }
 
 export interface IOrderFormPayload {
+    index: number;
     values: Map<string, string>;
 }
 
@@ -25,6 +26,9 @@ export default class OrderForm extends React.Component<IOrderFormPayload & IOrde
     }
 
     public render(): JSX.Element {
+
+        console.log(this.props.values.has("birthday") ? this.props.values.get("birthday") : new Date());
+
         return (<div id="orderForm" className="modal" tabIndex={-1} role="dialog">
             <div className="modal-dialog" role="document">
                 <div className="modal-content">
@@ -45,7 +49,8 @@ export default class OrderForm extends React.Component<IOrderFormPayload & IOrde
 
                             <div className="form-group">
                                 <InputDate handleChange={(value) => this.props.addChange("birthday", value)}
-                                    id="birthday" title="Birthday" placeholder="Enter your birthday" required={true} invalidFeedBack="Please select your birthday"
+                                    id="birthday" title="Birthday" placeholder="Enter your birthday"
+                                    value={this.props.values.has("birthday") ? this.props.values.get("birthday") : new Date()}
                                 />
                             </div>
 

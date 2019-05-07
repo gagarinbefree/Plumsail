@@ -15,8 +15,6 @@ const AppReducer: Reducer<IAppState, Action> = (state: IAppState = initalState, 
         if (action.type === "APP_SHOW_CREATE_ORDER_FORM") {
             const act = action as IShowOrderFormAction;
             draft.payload.showOrderForm = act.showOrderForm;
-
-            console.log(act.showOrderForm.toString());
         }
     });
 };

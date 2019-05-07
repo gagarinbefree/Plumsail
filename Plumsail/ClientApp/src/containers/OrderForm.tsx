@@ -4,6 +4,7 @@ import { addChange } from "../actions/OrderForm";
 
 const mapStateToProps = (state: any): IOrderFormPayload => {
     return {
+        cnt: state.OrderFormReducer.payload.index,
         values: state.OrderFormReducer.payload.values
     }
 }
