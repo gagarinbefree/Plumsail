@@ -8,10 +8,10 @@ import InputRadio from "./InputRadio";
 
 export interface IOrderFormState {
     type: string;
-    payload: IOrderFormPayload;    
+    payload: IOrderFormPayload;
 }
 
-export interface IOrderFormPayload  {
+export interface IOrderFormPayload {
     values: Map<string, string>;
 }
 
@@ -25,7 +25,6 @@ export default class OrderForm extends React.Component<IOrderFormPayload & IOrde
     }
 
     public render(): JSX.Element {
-        // const paymentMethods: string[] = ["Credit Cards", "Bank Transfers", "Cash"];
         return (<div id="orderForm" className="modal" tabIndex={-1} role="dialog">
             <div className="modal-dialog" role="document">
                 <div className="modal-content">
@@ -38,15 +37,15 @@ export default class OrderForm extends React.Component<IOrderFormPayload & IOrde
                     <div className="modal-body">
                         <form onSubmit={this.handleSubmit} noValidate={true}>
 
-                            <div className="row">
+                            <div className="form-group">
                                 <InputText handleChange={(value) => this.props.addChange("userName", value)}
-                                    id="userName" title="User name*" placeholder="Enter your name" required={true} invalidFeedBack="Please input a user name"
+                                    id="userName" title="User name" placeholder="Enter your name" required={true} invalidFeedBack="Please input a user name"
                                 />
                             </div>
 
-                            <div className="row">
+                            <div className="form-group">
                                 <InputDate handleChange={(value) => this.props.addChange("birthday", value)}
-                                    id="birthday" title="Birthday*" placeholder="Enter your birthday" required={true} invalidFeedBack="Please input your birthday"
+                                    id="birthday" title="Birthday" placeholder="Enter your birthday" 
                                 />
                             </div>
 
@@ -59,16 +58,16 @@ export default class OrderForm extends React.Component<IOrderFormPayload & IOrde
 
                             <div className="form-group">
                                 <InputRadio handleChange={(value) => this.props.addChange("electronic", value)}
-                                    id="electronic" title="The information should be submitted in electronic form"
+                                    id="electronic" title="The information should be submitted in electronic form" required={true} name="submitMethod"
                                 />
                                 <InputRadio handleChange={(value) => this.props.addChange("electronic", value)}
-                                    id="invoice" title="We can also send out an invoice for group reservations"
+                                    id="invoice" title="We can also send out an invoice for group reservations" required={true} name="submitMethod" invalidFeedBack="Please select submit method"
                                 />
                             </div>
 
                             <div className="form-group">
                                 <InputCheckBox handleChange={(value) => this.props.addChange("accept", value)}
-                                    id="accept" title="I accept the Terms"
+                                    id="accept" title="I accept the Terms" required={true} invalidFeedBack="Please accept the Terms"
                                 />
                             </div>
 
@@ -79,7 +78,7 @@ export default class OrderForm extends React.Component<IOrderFormPayload & IOrde
 
                         </form>
                     </div>
-                    
+
                 </div>
             </div>
         </div>);
