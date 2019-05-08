@@ -26,9 +26,6 @@ export default class OrderForm extends React.Component<IOrderFormPayload & IOrde
     }
 
     public render(): JSX.Element {
-
-        console.log(this.props.values.has("birthday") ? this.props.values.get("birthday") : new Date());
-
         return (<div id="orderForm" className="modal" tabIndex={-1} role="dialog">
             <div className="modal-dialog" role="document">
                 <div className="modal-content">
