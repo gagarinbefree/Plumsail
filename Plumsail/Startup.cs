@@ -1,17 +1,27 @@
+using DataAcessLayer.Dto;
+using DataAcessLayer.LiteDb;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.SpaServices.ReactDevelopmentServer;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Plumsail.ViewModels;
 
 namespace Plumsail
 {
     public class Startup
     {
-        public Startup(IConfiguration configuration)
+        public Startup(IConfiguration configuration, IHostingEnvironment env)
         {
             Configuration = configuration;
+
+            var builder = new ConfigurationBuilder()
+                .SetBasePath(env.ContentRootPath)
+                .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
+                .AddEnvironmentVariables();
+
+            Configuration = builder.Build();
         }
 
         public IConfiguration Configuration { get; }
@@ -20,12 +30,15 @@ namespace Plumsail
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+            services.AddTransient<LiteDbContext>(s => new LiteDbContext(Configuration.GetConnectionString("PlumsailDb")));
 
             // In production, the React files will be served from this directory
             services.AddSpaStaticFiles(configuration =>
             {
                 configuration.RootPath = "ClientApp/build";
             });
+
+            MapsterConfigure();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -59,6 +72,17 @@ namespace Plumsail
                     spa.UseReactDevelopmentServer(npmScript: "start");
                 }
             });
+        }
+
+        private void MapsterConfigure()
+        {
+            Mapster.TypeAdapterConfig<Order, OrderViewModel>
+                .NewConfig()
+                .Map(s => s.Values, d => d.Values);
+
+            Mapster.TypeAdapterConfig<OrderViewModel, Order>
+                .NewConfig()
+                .Map(s => s.Values, d => d.Values);
         }
     }
 }
