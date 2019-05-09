@@ -20,7 +20,8 @@
         "noUnusedLocals": true,
         "types": [ "webpack-env" ],
         "strict": false,
-        "skipDefaultLibCheck": true
+        "skipDefaultLibCheck": true,
+        "downlevelIteration": true
     },
     "exclude": [
         "node_modules",

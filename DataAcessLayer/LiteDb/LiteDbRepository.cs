@@ -15,10 +15,10 @@ namespace DataAcessLayer.LiteDb
             _db = db;
         }
 
-        public int Create(T item)
+        public void Create(T item)
         {
             var col = _db.Context.GetCollection<T>(typeof(T).Name);
-            return col.Insert(item).GetBytesCount(false);
+            col.Insert(item);
         }
 
         public List<T> GetAll()

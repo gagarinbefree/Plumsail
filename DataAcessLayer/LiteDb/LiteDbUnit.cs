@@ -5,7 +5,7 @@ using DataAcessLayer.Dto;
 
 namespace DataAcessLayer.LiteDb
 {
-    class LiteDbUnit : IUoW, IDisposable
+    public class LiteDbUnit : IUoW, IDisposable
     {
         private LiteDbContext _db;
 

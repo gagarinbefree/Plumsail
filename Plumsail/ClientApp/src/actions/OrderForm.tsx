@@ -1,13 +1,44 @@
-﻿import { Action } from "redux";
+﻿import { Action, Dispatch } from "redux";
 
-export interface IAddChangeAction extends Action<string> {
-    type: string;
+export interface IAddChangeAction extends Action {
     fieldName;
     fieldValue;
+}
+
+export interface IOrderFormPostAction extends Action {
+    submitError: string
 }
 
 export const addChange = (fieldName: string, fieldValue: string): IAddChangeAction => ({
     type: "ORDER_FORM_ADD_CHANGE",
     fieldName,
     fieldValue
-});
+})
+
+export const submitForm = (error: string): IOrderFormPostAction => ({
+    type: 'ORDER_FORM_SUBMIT',
+    submitError: error
+})
+
+export const submitFormAsync = (values: Map<string, string>) => (
+    async (dispatch: Dispatch): Promise<void> => {
+        try {
+
+            const res: any = await fetch("/api/order", {
+                method: "post",
+                headers: {
+                    "Accept": "application/json",
+                    "Content-Type": "application/json"
+                },
+                body: ""
+            });
+
+            await res.json();
+        }
+        catch (ex) {
+            dispatch(submitForm(ex));
+        }
+    }
+)
+
+// const mapToArray = m => Array.from(m).map(([k, v]) => ( { [k]: v } ));

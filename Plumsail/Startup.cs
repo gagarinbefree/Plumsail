@@ -1,3 +1,4 @@
+using DataAcessLayer;
 using DataAcessLayer.Dto;
 using DataAcessLayer.LiteDb;
 using Microsoft.AspNetCore.Builder;
@@ -31,6 +32,7 @@ namespace Plumsail
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
             services.AddTransient<LiteDbContext>(s => new LiteDbContext(Configuration.GetConnectionString("PlumsailDb")));
+            services.AddScoped<IUoW, LiteDbUnit>();
 
             // In production, the React files will be served from this directory
             services.AddSpaStaticFiles(configuration =>
@@ -78,11 +80,13 @@ namespace Plumsail
         {
             Mapster.TypeAdapterConfig<Order, OrderViewModel>
                 .NewConfig()
-                .Map(s => s.Values, d => d.Values);
+                .Map(s => s.Values, d => d.Values)
+                .Map(s => s.Id, d => d.Id);
 
             Mapster.TypeAdapterConfig<OrderViewModel, Order>
                 .NewConfig()
-                .Map(s => s.Values, d => d.Values);
+                .Map(s => s.Values, d => d.Values)
+                .Ignore(s => s.Id);
         }
     }
 }

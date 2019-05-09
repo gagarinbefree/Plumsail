@@ -14,10 +14,12 @@ export interface IOrderFormState {
 export interface IOrderFormPayload {
     index: number;
     values: Map<string, string>;
+    submitError: string;
 }
 
 export interface IOrderFormProps {
     addChange(fieldName: string, filedValue: string): void;
+    submitFormAsync(values: Map<string, string>): Promise<void>;
 }
 
 export default class OrderForm extends React.Component<IOrderFormPayload & IOrderFormProps> {
@@ -36,7 +38,7 @@ export default class OrderForm extends React.Component<IOrderFormPayload & IOrde
                         </button>
                     </div>
                     <div className="modal-body">
-                        <form onSubmit={this.handleSubmit} noValidate={true}>
+                        <form onSubmit={e => this.handleSubmit(e)} noValidate={true}>
 
                             <div className="form-group">
                                 <InputText handleChange={(value) => this.props.addChange("userName", value)}
@@ -86,11 +88,14 @@ export default class OrderForm extends React.Component<IOrderFormPayload & IOrde
         </div>);
     }
 
-    private handleSubmit = (e: any): void => {
+    private handleSubmit = async (e: any): Promise<void> => {
         e.preventDefault();
         e.target.className = "was-validated";
         if (e.target.checkValidity()) {
-            // empty
+
+            debugger;
+
+            await this.props.submitFormAsync(this.props.values);
         }
     }
 }

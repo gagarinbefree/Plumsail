@@ -7,6 +7,6 @@ namespace DataAcessLayer
     public interface IGenRepository<T>
     {
         List<T> GetAll();
-        int Create(T item);
+        void Create(T item);
     }
 }

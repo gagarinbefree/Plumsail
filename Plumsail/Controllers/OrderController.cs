@@ -36,10 +36,13 @@ namespace Plumsail.Controllers
         }
 
         [HttpPost]
-        public IActionResult Post([FromBody] OrderViewModel model)
+        public IActionResult Post([FromBody] Dictionary<string, string> model)
         {
             try
             {
+                if (!ModelState.IsValid)
+                    throw new Exception("Request body is not valid");
+
                 _unit.RepOrder.Create(model.Adapt<Order>());
 
                 return Ok();
