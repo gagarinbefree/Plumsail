@@ -89,5 +89,8 @@ export default class OrderForm extends React.Component<IOrderFormPayload & IOrde
     private handleSubmit = (e: any): void => {
         e.preventDefault();
         e.target.className = "was-validated";
+        if (e.target.checkValidity()) {
+            // empty
+        }
     }
 }
