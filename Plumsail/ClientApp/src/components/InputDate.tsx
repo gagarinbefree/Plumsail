@@ -14,7 +14,8 @@ const InputDate: React.SFC<IInputElement> = (props: IInputElement) => {
                 placeholderText={props.placeholder}
                 required={props.required}     
                 onChange={(date: any) => props.handleChange(date)}
-                selected={props.value}
+                value={new Date().toDateString()}
+                
                 dateFormat="dd.MM.YYYY"
             />            
         </div>        

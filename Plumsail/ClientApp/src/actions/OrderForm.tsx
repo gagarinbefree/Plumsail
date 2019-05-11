@@ -24,13 +24,19 @@ export const submitFormAsync = (values: Map<string, string>) => (
     async (dispatch: Dispatch): Promise<void> => {
         try {
 
+            const arr = [...values];
+            const obj = arr.reduce((o, [key, value]) => {
+                o[key] = value
+                return o
+            }, {});
+
             const res: any = await fetch("/api/order", {
                 method: "post",
                 headers: {
                     "Accept": "application/json",
                     "Content-Type": "application/json"
                 },
-                body: ""
+                body: JSON.stringify(obj)
             });
 
             await res.json();

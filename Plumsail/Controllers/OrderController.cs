@@ -27,9 +27,9 @@ namespace Plumsail.Controllers
         {
             try
             {
-                return Ok(_unit.RepOrder.GetAll().Adapt<OrderViewModel[]>());
+                return Ok(_unit.RepOrder.GetAll());
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 return BadRequest(ex.Message);
             }
@@ -40,15 +40,18 @@ namespace Plumsail.Controllers
         {
             try
             {
-                if (!ModelState.IsValid)
+                if (model == null || !model.Any())
                     throw new Exception("Request body is not valid");
 
-                _unit.RepOrder.Create(model.Adapt<Order>());
+                Order order = new Order();
+                order.Values = model;
+
+                _unit.RepOrder.Create(order);
 
                 return Ok();
 
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 return BadRequest(ex.Message);
             }
