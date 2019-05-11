@@ -35,6 +35,7 @@
     <None Remove="ClientApp\src\components\InputElement.tsx" />
     <None Remove="ClientApp\src\components\InputOption.tsx" />
     <None Remove="ClientApp\src\components\InputRadio.tsx" />
+    <None Remove="ClientApp\src\components\OrderCard.tsx" />
     <None Remove="ClientApp\src\components\OrderForm.tsx" />
     <None Remove="ClientApp\src\containers\OrderForm.tsx" />
     <None Remove="ClientApp\src\reducers\App.tsx" />
@@ -60,6 +61,7 @@
   <ItemGroup>
     <TypeScriptCompile Include="ClientApp\src\actions\App.tsx" />
     <TypeScriptCompile Include="ClientApp\src\actions\OrderForm.tsx" />
+    <TypeScriptCompile Include="ClientApp\src\components\OrderCard.tsx" />
     <TypeScriptCompile Include="ClientApp\src\components\InputElement.tsx" />
     <TypeScriptCompile Include="ClientApp\src\components\InputCheckBox.tsx" />
     <TypeScriptCompile Include="ClientApp\src\components\InputDate.tsx" />

@@ -2,7 +2,7 @@
 import * as React from "react";
 import InvalidFeedBack from "./InvalidFeedBack"
 
-const ImputText: React.SFC<IInputElement> = (props: IInputElement) => {
+const InputText: React.SFC<IInputElement> = (props: IInputElement) => {
     return <React.Fragment>
         <label htmlFor={props.id}>{props.title}</label>
         <input type="text"
@@ -17,5 +17,5 @@ const ImputText: React.SFC<IInputElement> = (props: IInputElement) => {
     </React.Fragment>;
 }
 
-export default ImputText;
+export default InputText;
 
