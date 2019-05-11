@@ -9,10 +9,14 @@ const InputRadio: React.SFC<IInputElement> = (props: IInputElement) => {
             name={props.name}
             id={props.id}
             required={props.required}
-            onChange={(event: any) => props.handleChange(event.target.value)} />
+            onChange={(event: any) => props.handleChange(event.target.value)}
+            value={props.title}
+        />
         <label className="form-check-label" htmlFor={props.id}>{props.title}</label>
         <InvalidFeedBack text={props.invalidFeedBack} />
     </div>;
 }
 
 export default InputRadio;
+
+

@@ -61,10 +61,10 @@ export default class OrderForm extends React.Component<IOrderFormPayload & IOrde
                             </div>
 
                             <div className="form-group">
-                                <InputRadio handleChange={(value) => this.props.addChange("electronic", value)}
+                                <InputRadio handleChange={(value) => this.props.addChange("submitMethod", value)}
                                     id="electronic" title="The information should be submitted in electronic form" required={true} name="submitMethod"
                                 />
-                                <InputRadio handleChange={(value) => this.props.addChange("electronic", value)}
+                                <InputRadio handleChange={(value) => this.props.addChange("invoice", value)}
                                     id="invoice" title="We can also send out an invoice for group reservations" required={true} name="submitMethod" invalidFeedBack="Please select submit method"
                                 />
                             </div>
@@ -98,4 +98,5 @@ export default class OrderForm extends React.Component<IOrderFormPayload & IOrde
             await this.props.submitFormAsync(this.props.values);
         }
     }
+
 }

@@ -23,9 +23,7 @@ export const submitForm = (error: string): IOrderFormPostAction => ({
 export const submitFormAsync = (values: Map<string, string>) => (
     async (dispatch: Dispatch): Promise<void> => {
         try {
-
-            const arr = [...values];
-            const obj = arr.reduce((o, [key, value]) => {
+            const val = [...values].reduce((o, [key, value]) => {
                 o[key] = value
                 return o
             }, {});
@@ -36,7 +34,7 @@ export const submitFormAsync = (values: Map<string, string>) => (
                     "Accept": "application/json",
                     "Content-Type": "application/json"
                 },
-                body: JSON.stringify(obj)
+                body: JSON.stringify(val)
             });
 
             await res.json();
