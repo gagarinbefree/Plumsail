@@ -12,7 +12,6 @@ export interface IOrderFormState {
 }
 
 export interface IOrderFormPayload {
-    index: number;
     values: Map<string, string>;
     submitError: string;
 }
@@ -98,5 +97,4 @@ export default class OrderForm extends React.Component<IOrderFormPayload & IOrde
             await this.props.submitFormAsync(this.props.values);
         }
     }
-
 }

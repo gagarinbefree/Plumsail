@@ -5,7 +5,6 @@ import { submitFormAsync } from "../actions/OrderForm";
 
 const mapStateToProps = (state: any): IOrderFormPayload => {
     return {
-        index: state.OrderFormReducer.payload.index,
         values: state.OrderFormReducer.payload.values,
         submitError: state.OrderFormReducer.payload.submitError
     }

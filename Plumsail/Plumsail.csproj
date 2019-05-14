@@ -30,6 +30,7 @@
   <ItemGroup>
     <None Remove="ClientApp\src\actions\App.tsx" />
     <None Remove="ClientApp\src\actions\OrderForm.tsx" />
+    <None Remove="ClientApp\src\actions\OrderList.tsx" />
     <None Remove="ClientApp\src\components\InputCheckBox.tsx" />
     <None Remove="ClientApp\src\components\InputDate.tsx" />
     <None Remove="ClientApp\src\components\InputElement.tsx" />
@@ -37,10 +38,13 @@
     <None Remove="ClientApp\src\components\InputRadio.tsx" />
     <None Remove="ClientApp\src\components\OrderCard.tsx" />
     <None Remove="ClientApp\src\components\OrderForm.tsx" />
+    <None Remove="ClientApp\src\components\OrderList.tsx" />
     <None Remove="ClientApp\src\containers\OrderForm.tsx" />
+    <None Remove="ClientApp\src\containers\OrderList.tsx" />
     <None Remove="ClientApp\src\reducers\App.tsx" />
     <None Remove="ClientApp\src\reducers\index.tsx" />
     <None Remove="ClientApp\src\reducers\OrderForm.tsx" />
+    <None Remove="ClientApp\src\reducers\OrderList.tsx" />
     <None Remove="ClientApp\tsconfig.json" />
   </ItemGroup>
 
@@ -61,6 +65,7 @@
   <ItemGroup>
     <TypeScriptCompile Include="ClientApp\src\actions\App.tsx" />
     <TypeScriptCompile Include="ClientApp\src\actions\OrderForm.tsx" />
+    <TypeScriptCompile Include="ClientApp\src\actions\OrderList.tsx" />
     <TypeScriptCompile Include="ClientApp\src\components\OrderCard.tsx" />
     <TypeScriptCompile Include="ClientApp\src\components\InputElement.tsx" />
     <TypeScriptCompile Include="ClientApp\src\components\InputCheckBox.tsx" />
@@ -68,16 +73,25 @@
     <TypeScriptCompile Include="ClientApp\src\components\InputOption.tsx" />
     <TypeScriptCompile Include="ClientApp\src\components\InputRadio.tsx" />
     <TypeScriptCompile Include="ClientApp\src\components\OrderForm.tsx" />
+    <TypeScriptCompile Include="ClientApp\src\components\OrderList.tsx" />
     <TypeScriptCompile Include="ClientApp\src\containers\OrderForm.tsx" />
+    <TypeScriptCompile Include="ClientApp\src\containers\OrderList.tsx" />
     <TypeScriptCompile Include="ClientApp\src\reducers\App.tsx" />
     <TypeScriptCompile Include="ClientApp\src\reducers\index.tsx" />
     <TypeScriptCompile Include="ClientApp\src\reducers\OrderForm.tsx" />
+    <TypeScriptCompile Include="ClientApp\src\reducers\OrderList.tsx" />
   </ItemGroup>
 
   <ItemGroup>
     <Content Update="appsettings.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="plumsail.db">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 
   <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">

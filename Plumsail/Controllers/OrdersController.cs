@@ -13,11 +13,11 @@ namespace Plumsail.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class OrderController : ControllerBase
+    public class OrdersController : ControllerBase
     {
         private IUoW _unit;
 
-        public OrderController(IUoW unit)
+        public OrdersController(IUoW unit)
         {
             _unit = unit;
         }
@@ -27,7 +27,9 @@ namespace Plumsail.Controllers
         {
             try
             {
-                return Ok(_unit.RepOrder.GetAll());
+                List<Order> orders = _unit.RepOrder.GetAll();
+
+                return Ok(orders);
             }
             catch (Exception ex)
             {

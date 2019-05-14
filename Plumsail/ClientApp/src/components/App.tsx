@@ -2,6 +2,7 @@ import * as React from "react";
 import "bootstrap/dist/js/bootstrap";
 import "bootstrap/dist/css/bootstrap.css";
 import OrderForm from "../containers/OrderForm";
+import OrderList from "../containers/OrderList";
 
 export interface IAppState {
     type: string;
@@ -34,8 +35,8 @@ export default class App extends React.Component<IAppPayload & IAppProps> {
                                 Create order
                             </button>
                             <OrderForm />
-                        </div>
-                        
+                            <OrderList />
+                        </div>                        
                     </div>
                 </div>
             </div>

@@ -28,7 +28,7 @@ export const submitFormAsync = (values: Map<string, string>) => (
                 return o
             }, {});
 
-            const res: any = await fetch("/api/order", {
+            const res: any = await fetch("/api/orders", {
                 method: "post",
                 headers: {
                     "Accept": "application/json",
@@ -44,5 +44,3 @@ export const submitFormAsync = (values: Map<string, string>) => (
         }
     }
 )
-
-// const mapToArray = m => Array.from(m).map(([k, v]) => ( { [k]: v } ));
