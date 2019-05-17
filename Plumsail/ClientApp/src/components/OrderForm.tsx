@@ -40,36 +40,36 @@ export default class OrderForm extends React.Component<IOrderFormPayload & IOrde
                         <form onSubmit={e => this.handleSubmit(e)} noValidate={true}>
 
                             <div className="form-group">
-                                <InputText handleChange={(value) => this.props.addChange("userName", value)}
+                                <InputText handleChange={(value) => this.props.addChange("User name", value)}
                                     id="userName" title="User name" placeholder="Enter your name" required={true} invalidFeedBack="Please input a user name"
                                 />
                             </div>
 
                             <div className="form-group">
-                                <InputDate handleChange={(value) => this.props.addChange("birthday", value)}
+                                <InputDate handleChange={(value) => this.props.addChange("Birthday", value)}
                                     id="birthday" title="Birthday" placeholder="Enter your birthday"
                                     value={this.props.values.has("birthday") ? this.props.values.get("birthday") : new Date()}
                                 />
                             </div>
 
                             <div className="form-group">
-                                <InputOption handleChange={(value) => this.props.addChange("paymentMethod", value)}
+                                <InputOption handleChange={(value) => this.props.addChange("Payment method", value)}
                                     id="inputOption" title="Payment method" placeholder="Select payment method" required={true} invalidFeedBack="Please select payment method"
                                     values={["Credit Cards", "Bank Transfers", "Cash"]}
                                 />
                             </div>
 
                             <div className="form-group">
-                                <InputRadio handleChange={(value) => this.props.addChange("submitMethod", value)}
+                                <InputRadio handleChange={(value) => this.props.addChange("Submit method", value)}
                                     id="electronic" title="The information should be submitted in electronic form" required={true} name="submitMethod"
                                 />
-                                <InputRadio handleChange={(value) => this.props.addChange("invoice", value)}
+                                <InputRadio handleChange={(value) => this.props.addChange("Invoice", value)}
                                     id="invoice" title="We can also send out an invoice for group reservations" required={true} name="submitMethod" invalidFeedBack="Please select submit method"
                                 />
                             </div>
 
                             <div className="form-group">
-                                <InputCheckBox handleChange={(value) => this.props.addChange("accept", value)}
+                                <InputCheckBox handleChange={(value) => this.props.addChange("Accept", value)}
                                     id="accept" title="I accept the Terms" required={true} invalidFeedBack="Please accept the Terms"
                                 />
                             </div>

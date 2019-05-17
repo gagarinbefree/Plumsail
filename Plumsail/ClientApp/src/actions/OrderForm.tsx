@@ -13,19 +13,20 @@ export const addChange = (fieldName: string, fieldValue: string): IAddChangeActi
     type: "ORDER_FORM_ADD_CHANGE",
     fieldName,
     fieldValue
-})
+});
 
 export const submitForm = (error: string): IOrderFormPostAction => ({
-    type: 'ORDER_FORM_SUBMIT',
+    type: "ORDER_FORM_SUBMIT",
     submitError: error
-})
+});
 
 export const submitFormAsync = (values: Map<string, string>) => (
     async (dispatch: Dispatch): Promise<void> => {
         try {
             const val = [...values].reduce((o, [key, value]) => {
-                o[key] = value
-                return o
+                o[key] = value;
+
+                return o;
             }, {});
 
             const res: any = await fetch("/api/orders", {

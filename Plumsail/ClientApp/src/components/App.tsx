@@ -26,8 +26,8 @@ export default class App extends React.Component<IAppPayload & IAppProps> {
         return (
             <div>
                 <div className="container-fluid">
-                    <div className="row">
-                        <div className="ml-3 mt-3">
+                    <div className="row ml-3 ">
+                        <div className="mt-3">
                             <button type="button"
                                 className="btn btn-primary"
                                 onClick={(): void => this.props.onShowOrderForm()}

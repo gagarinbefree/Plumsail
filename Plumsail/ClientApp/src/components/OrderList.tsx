@@ -30,9 +30,11 @@ export default class OrderForm extends React.Component<IOrderListPayload & IOrde
         return <div>
             {
                 this.props.orders.map((value: IOrderCard, index: number) => {
-                    return <OrderCard id={value.id} values={value.values} key={index} />
+                    return <div className="row mt-3" key={index} >
+                        <OrderCard id={value.id} values={value.values}/>
+                    </div>;
                 })
             }
-        </div>
+        </div>;
     }
 }
