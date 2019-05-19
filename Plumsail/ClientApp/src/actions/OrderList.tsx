@@ -25,32 +25,18 @@ export const getOrdersAsync = () => (
     async (dispatch: Dispatch): Promise<void> => {
         try {
             const res: any = await fetch("/api/orders",
-                {
-                    method: "get",
-                    headers: {
-                        "Accept": "application/json",
-                        "Content-Type": "application/json"
-                    }
-                });
+            {
+                method: "get",
+                headers: {
+                    "Accept": "application/json",
+                    "Content-Type": "application/json"
+                }
+            });
 
-            const orders = await res.json() as IOrderCard[];
-            // orders.map((value: IOrderCard) => {
-            //    value.values = anyToMap(value.values);
-            // });
-
-            dispatch(getOrders(orders, ""));
+            dispatch(getOrders(await res.json(), ""));
         }
         catch (ex) {
             dispatch(getOrders([], ex));
         }
     }
 );
-
-// const anyToMap = (obj: any) => {
-//    const strMap = new Map();
-//    for (const k of Object.keys(obj)) {
-//        strMap.set(k, obj[k]);
-//    }
-
-//    return strMap;
-// }

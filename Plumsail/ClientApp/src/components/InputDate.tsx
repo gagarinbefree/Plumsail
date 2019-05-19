@@ -3,6 +3,7 @@ import { IInputElement } from "./InputElement";
 import InvalidFeedBack from "./InvalidFeedBack";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import * as moment from "moment";
 
 const InputDate: React.SFC<IInputElement> = (props: IInputElement) => {
     return <React.Fragment>
@@ -13,8 +14,8 @@ const InputDate: React.SFC<IInputElement> = (props: IInputElement) => {
                 id={props.id}
                 placeholderText={props.placeholder}
                 required={props.required}     
-                onChange={(date: any) => props.handleChange(date)}
-                selected={props.value}                
+                onChange={(date: Date) => props.handleChange(date)}
+                selected={moment(props.value, "DD.MM.YYYY").toDate()}                
                 dateFormat="dd.MM.YYYY"
         />            
         </div>        

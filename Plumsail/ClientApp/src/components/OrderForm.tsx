@@ -5,6 +5,7 @@ import InputDate from "./InputDate";
 import InputOption from "./InputOption";
 import InputCheckBox from "./InputCheckBox";
 import InputRadio from "./InputRadio";
+import * as moment from "moment";
 
 export interface IOrderFormState {
     type: string;
@@ -33,11 +34,6 @@ export default class OrderForm extends React.Component<IOrderFormPayload & IOrde
     }
 
     public render(): JSX.Element {
-         // const xxx: any = this.props.values.find(f => f.key === "birthday")!.value;
-
-         // debugger;
-
-
         return (<div id="orderForm" className="modal" tabIndex={-1} role="dialog">
             <div className="modal-dialog" role="document">
                 <div className="modal-content">
@@ -57,7 +53,7 @@ export default class OrderForm extends React.Component<IOrderFormPayload & IOrde
                             </div>
 
                             <div className="form-group">
-                                <InputDate handleChange={(value) => this.props.addChange("birthday", value, "Birthday")}
+                                <InputDate handleChange={(value) => this.props.addChange("birthday", moment(value).format('DD.MM.YYYY'), "Birthday")}
                                     id="birthday" title="Birthday" placeholder="Enter your birthday"
                                     value={this.props.values.find(f => f.key === "birthday")!.value}
                                 />
@@ -102,7 +98,6 @@ export default class OrderForm extends React.Component<IOrderFormPayload & IOrde
         e.preventDefault();
         e.target.className = "was-validated";
         if (e.target.checkValidity()) {
-
             await this.props.submitFormAsync(this.props.values);
         }
     }

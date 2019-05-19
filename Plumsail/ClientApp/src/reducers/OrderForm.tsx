@@ -24,7 +24,7 @@ const OrderFormReducer: Reducer<IOrderFormState, Action> = (state: IOrderFormSta
         if (action.type === "ORDER_FORM_ADD_CHANGE") {
             const act = action as IAddChangeAction;
             const index = draft.payload.values.findIndex(f => f.key === act.key);
-            if (index > 0) {
+            if (index >= 0) {
                 draft.payload.values[index] = { ...act };
             }
             else {
