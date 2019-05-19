@@ -1,8 +1,9 @@
 ﻿import * as React from "react";
+import { IOrderValue } from './OrderForm';
 
 export interface IOrderCard {
     id: string;
-    values: Map<string, string>;
+    values: IOrderValue[]
 }
 
 const OrderCard: React.SFC<IOrderCard> = (props: IOrderCard) => {
@@ -11,7 +12,7 @@ const OrderCard: React.SFC<IOrderCard> = (props: IOrderCard) => {
            <strong>Order id: </strong>{props.id}
         </div>
         <div className="card-body" >
-            {Array.from(props.values).map((value: string[], index: number) => <p key={index}><strong>{value[0]}</strong>: {value[1]}</p>)}
+            {Array.from(props.values).map((item: IOrderValue, index: number) => <p key={index}><strong>{item.description}</strong>: {item.value}</p>)}
         </div>
     </div>;
 };

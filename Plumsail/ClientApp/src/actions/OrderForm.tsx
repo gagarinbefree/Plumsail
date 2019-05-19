@@ -1,18 +1,21 @@
 ﻿import { Action, Dispatch } from "redux";
+import { IOrderValue } from "../components/OrderForm"
 
 export interface IAddChangeAction extends Action {
-    fieldName;
-    fieldValue;
+    key;
+    value;
+    description;
 }
 
 export interface IOrderFormPostAction extends Action {
     submitError: string
 }
 
-export const addChange = (fieldName: string, fieldValue: string): IAddChangeAction => ({
+export const addChange = (key: string, value: string, description: string | undefined): IAddChangeAction => ({
     type: "ORDER_FORM_ADD_CHANGE",
-    fieldName,
-    fieldValue
+    key,
+    value,
+    description: description || key
 });
 
 export const submitForm = (error: string): IOrderFormPostAction => ({
@@ -20,14 +23,14 @@ export const submitForm = (error: string): IOrderFormPostAction => ({
     submitError: error
 });
 
-export const submitFormAsync = (values: Map<string, string>) => (
+export const submitFormAsync = (values: IOrderValue[]) => (
     async (dispatch: Dispatch): Promise<void> => {
         try {
-            const val = [...values].reduce((o, [key, value]) => {
-                o[key] = value;
+            //const val = [...values].reduce((o, [key, value]) => {
+            //    o[key] = value;
 
-                return o;
-            }, {});
+            //    return o;
+            //}, {});
 
             const res: any = await fetch("/api/orders", {
                 method: "post",
@@ -35,7 +38,7 @@ export const submitFormAsync = (values: Map<string, string>) => (
                     "Accept": "application/json",
                     "Content-Type": "application/json"
                 },
-                body: JSON.stringify(val)
+                body: JSON.stringify(values)
             });
 
             await res.json();

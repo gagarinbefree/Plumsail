@@ -9,6 +9,13 @@ namespace DataAcessLayer.Dto
     {
         [BsonId]
         public Guid Id { get; set; }
-        public Dictionary<string, string> Values { get; set; } = new Dictionary<string, string>();
+        public List<OrderItem> Values { get; set; } = new List<OrderItem>();
+    }
+
+    public class OrderItem
+    {
+        public string Key { get; set; }
+        public string Value { get; set; }
+        public string Description { get; set; }
     }
 }

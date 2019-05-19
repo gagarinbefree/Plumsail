@@ -1,5 +1,5 @@
 ﻿import { connect } from "react-redux";
-import OrderForm, { IOrderFormPayload, IOrderFormProps } from "../components/OrderForm";
+import OrderForm, { IOrderFormPayload, IOrderFormProps, IOrderValue } from "../components/OrderForm";
 import { addChange } from "../actions/OrderForm";
 import { submitFormAsync } from "../actions/OrderForm";
 
@@ -12,8 +12,8 @@ const mapStateToProps = (state: any): IOrderFormPayload => {
 
 const mapDispatchToProps = (dispatch: any): IOrderFormProps => {
     return {
-        addChange: (field, value): void => dispatch(addChange(field, value)),
-        submitFormAsync: async (values: Map<string, string>): Promise<void> => dispatch(submitFormAsync(values))
+        addChange: (key: string, value: string, description: string | undefined): void => dispatch(addChange(key, value, description)),
+        submitFormAsync: async (values: IOrderValue[]): Promise<void> => dispatch(submitFormAsync(values))
     }
 }
                                                          

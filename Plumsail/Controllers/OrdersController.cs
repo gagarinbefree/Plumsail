@@ -38,7 +38,7 @@ namespace Plumsail.Controllers
         }
 
         [HttpPost]
-        public IActionResult Post([FromBody] Dictionary<string, string> model)
+        public IActionResult Post([FromBody] List<OrderItem> model)
         {
             try
             {

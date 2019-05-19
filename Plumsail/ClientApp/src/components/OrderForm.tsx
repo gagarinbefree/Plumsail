@@ -12,13 +12,19 @@ export interface IOrderFormState {
 }
 
 export interface IOrderFormPayload {
-    values: Map<string, string>;
+    values: IOrderValue[];
     submitError: string;
 }
 
+export interface IOrderValue {
+    key: string;
+    value: string;
+    description: string;
+}
+
 export interface IOrderFormProps {
-    addChange(fieldName: string, filedValue: string): void;
-    submitFormAsync(values: Map<string, string>): Promise<void>;
+    addChange(key: string, value: string, description: string | undefined): void;
+    submitFormAsync(values: IOrderValue[]): Promise<void>;
 }
 
 export default class OrderForm extends React.Component<IOrderFormPayload & IOrderFormProps> {
@@ -40,36 +46,36 @@ export default class OrderForm extends React.Component<IOrderFormPayload & IOrde
                         <form onSubmit={e => this.handleSubmit(e)} noValidate={true}>
 
                             <div className="form-group">
-                                <InputText handleChange={(value) => this.props.addChange("User name", value)}
+                                <InputText handleChange={(value) => this.props.addChange("userName", value, "User name")}
                                     id="userName" title="User name" placeholder="Enter your name" required={true} invalidFeedBack="Please input a user name"
                                 />
                             </div>
 
                             <div className="form-group">
-                                <InputDate handleChange={(value) => this.props.addChange("Birthday", value)}
+                                <InputDate handleChange={(value) => this.props.addChange("birthday", value, "Birthday")}
                                     id="birthday" title="Birthday" placeholder="Enter your birthday"
-                                    value={this.props.values.has("birthday") ? this.props.values.get("birthday") : new Date()}
+                                    value={this.props.values["birthday"]}
                                 />
                             </div>
 
                             <div className="form-group">
-                                <InputOption handleChange={(value) => this.props.addChange("Payment method", value)}
+                                <InputOption handleChange={(value) => this.props.addChange("paymentMethod", value, "Payment method")}
                                     id="inputOption" title="Payment method" placeholder="Select payment method" required={true} invalidFeedBack="Please select payment method"
                                     values={["Credit Cards", "Bank Transfers", "Cash"]}
                                 />
                             </div>
 
                             <div className="form-group">
-                                <InputRadio handleChange={(value) => this.props.addChange("Submit method", value)}
+                                <InputRadio handleChange={(value) => this.props.addChange("submitMethod", value, "Submit method")}
                                     id="electronic" title="The information should be submitted in electronic form" required={true} name="submitMethod"
                                 />
-                                <InputRadio handleChange={(value) => this.props.addChange("Invoice", value)}
+                                <InputRadio handleChange={(value) => this.props.addChange("invoice", value, "Invoice")}
                                     id="invoice" title="We can also send out an invoice for group reservations" required={true} name="submitMethod" invalidFeedBack="Please select submit method"
                                 />
                             </div>
 
                             <div className="form-group">
-                                <InputCheckBox handleChange={(value) => this.props.addChange("Accept", value)}
+                                <InputCheckBox handleChange={(value) => this.props.addChange("accept", value, "Accept the terms")}
                                     id="accept" title="I accept the Terms" required={true} invalidFeedBack="Please accept the Terms"
                                 />
                             </div>
@@ -91,8 +97,6 @@ export default class OrderForm extends React.Component<IOrderFormPayload & IOrde
         e.preventDefault();
         e.target.className = "was-validated";
         if (e.target.checkValidity()) {
-
-            debugger;
 
             await this.props.submitFormAsync(this.props.values);
         }

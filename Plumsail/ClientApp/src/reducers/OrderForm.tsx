@@ -1,4 +1,4 @@
-﻿import { IOrderFormState } from "../components/OrderForm";
+﻿import { IOrderFormState, IOrderValue } from "../components/OrderForm";
 import { Reducer, Action } from "redux"
 import produce, { Draft } from "immer";
 import { IAddChangeAction, IOrderFormPostAction } from "../actions/OrderForm";
@@ -6,7 +6,7 @@ import { IAddChangeAction, IOrderFormPostAction } from "../actions/OrderForm";
 const initalState: IOrderFormState = {
     type: "",
     payload: {
-        values: new Map<string, string>(),
+        values: [] as IOrderValue[],
         submitError: ""
     }
 }
@@ -15,7 +15,12 @@ const OrderFormReducer: Reducer<IOrderFormState, Action> = (state: IOrderFormSta
     return produce(state, (draft: Draft<IOrderFormState>) => {
         if (action.type === "ORDER_FORM_ADD_CHANGE") {
             const act = action as IAddChangeAction;
-            draft.payload.values = draft.payload.values.set(act.fieldName, act.fieldValue);
+
+            const val: IOrderValue | undefined = draft.payload.values[act.key]
+            if (val)
+                draft.payload.values[act.key] = val;
+            else
+                draft.payload.values.push(val);                
         }
         else if (action.type === "ORDER_FORM_SUBMIT") {
             const act = action as IOrderFormPostAction;
