@@ -2,9 +2,9 @@
 import { IOrderValue } from "../components/OrderForm"
 
 export interface IAddChangeAction extends Action {
-    key;
-    value;
-    description;
+    key: string;
+    value: string;
+    description: string;
 }
 
 export interface IOrderFormPostAction extends Action {
@@ -26,11 +26,11 @@ export const submitForm = (error: string): IOrderFormPostAction => ({
 export const submitFormAsync = (values: IOrderValue[]) => (
     async (dispatch: Dispatch): Promise<void> => {
         try {
-            //const val = [...values].reduce((o, [key, value]) => {
+            // const val = [...values].reduce((o, [key, value]) => {
             //    o[key] = value;
 
             //    return o;
-            //}, {});
+            // }, {});
 
             const res: any = await fetch("/api/orders", {
                 method: "post",

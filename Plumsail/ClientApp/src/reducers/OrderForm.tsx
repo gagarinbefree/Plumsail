@@ -3,10 +3,18 @@ import { Reducer, Action } from "redux"
 import produce, { Draft } from "immer";
 import { IAddChangeAction, IOrderFormPostAction } from "../actions/OrderForm";
 
+const defaultValues: IOrderValue[] = [
+    {
+        key: "birthday",
+        value: new Date(),
+        description: "birthday"
+    }
+]
+
 const initalState: IOrderFormState = {
     type: "",
     payload: {
-        values: [] as IOrderValue[],
+        values: defaultValues,
         submitError: ""
     }
 }
@@ -15,12 +23,20 @@ const OrderFormReducer: Reducer<IOrderFormState, Action> = (state: IOrderFormSta
     return produce(state, (draft: Draft<IOrderFormState>) => {
         if (action.type === "ORDER_FORM_ADD_CHANGE") {
             const act = action as IAddChangeAction;
+            const index = draft.payload.values.findIndex(f => f.key === act.key);
+            if (index > 0) {
+                draft.payload.values[index] = { ...act };
+            }
+            else {
+                draft.payload.values.push({ ...act });
+            }
 
-            const val: IOrderValue | undefined = draft.payload.values[act.key]
-            if (val)
-                draft.payload.values[act.key] = val;
-            else
-                draft.payload.values.push(val);                
+            // draft.payload.values = draft.payload.values.map((val: IOrderValue, index: number) => {
+            //    if (val.key === act.key) {
+            //        return val = { ...act }
+            //    }
+            //    return val;
+            // });
         }
         else if (action.type === "ORDER_FORM_SUBMIT") {
             const act = action as IOrderFormPostAction;

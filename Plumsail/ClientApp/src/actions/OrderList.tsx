@@ -34,9 +34,9 @@ export const getOrdersAsync = () => (
                 });
 
             const orders = await res.json() as IOrderCard[];
-            //orders.map((value: IOrderCard) => {
+            // orders.map((value: IOrderCard) => {
             //    value.values = anyToMap(value.values);
-            //});
+            // });
 
             dispatch(getOrders(orders, ""));
         }
@@ -46,11 +46,11 @@ export const getOrdersAsync = () => (
     }
 );
 
-//const anyToMap = (obj: any) => {
+// const anyToMap = (obj: any) => {
 //    const strMap = new Map();
 //    for (const k of Object.keys(obj)) {
 //        strMap.set(k, obj[k]);
 //    }
 
 //    return strMap;
-//}
+// }

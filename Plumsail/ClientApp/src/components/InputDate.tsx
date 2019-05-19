@@ -14,10 +14,9 @@ const InputDate: React.SFC<IInputElement> = (props: IInputElement) => {
                 placeholderText={props.placeholder}
                 required={props.required}     
                 onChange={(date: any) => props.handleChange(date)}
-                value={new Date().toDateString()}
-                
+                selected={props.value}                
                 dateFormat="dd.MM.YYYY"
-            />            
+        />            
         </div>        
         <InvalidFeedBack text={props.invalidFeedBack} />        
     </React.Fragment>;

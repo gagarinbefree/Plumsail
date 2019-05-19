@@ -18,7 +18,7 @@ export interface IOrderFormPayload {
 
 export interface IOrderValue {
     key: string;
-    value: string;
+    value: any;
     description: string;
 }
 
@@ -33,6 +33,11 @@ export default class OrderForm extends React.Component<IOrderFormPayload & IOrde
     }
 
     public render(): JSX.Element {
+         // const xxx: any = this.props.values.find(f => f.key === "birthday")!.value;
+
+         // debugger;
+
+
         return (<div id="orderForm" className="modal" tabIndex={-1} role="dialog">
             <div className="modal-dialog" role="document">
                 <div className="modal-content">
@@ -41,7 +46,7 @@ export default class OrderForm extends React.Component<IOrderFormPayload & IOrde
                         <button type="button" className="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
-                    </div>
+                    </div>       
                     <div className="modal-body">
                         <form onSubmit={e => this.handleSubmit(e)} noValidate={true}>
 
@@ -54,7 +59,7 @@ export default class OrderForm extends React.Component<IOrderFormPayload & IOrde
                             <div className="form-group">
                                 <InputDate handleChange={(value) => this.props.addChange("birthday", value, "Birthday")}
                                     id="birthday" title="Birthday" placeholder="Enter your birthday"
-                                    value={this.props.values["birthday"]}
+                                    value={this.props.values.find(f => f.key === "birthday")!.value}
                                 />
                             </div>
 
